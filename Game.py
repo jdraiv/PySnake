@@ -35,10 +35,13 @@ class Game:
             self.apple_class.draw_apple()
             self.snake_class.draw_snake()
 
-            # TODO
             # Collision detection
-            print(self.apple_class.snake_head_pos())
+            # If the apple is eaten
+            if self.apple_class.apple_collision():
+                # Append a segment to the snake_body list
+                self.snake_class.snake_body.append([])
 
+            # Update
             pygame.display.update()
 
 
