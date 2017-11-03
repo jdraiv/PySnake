@@ -10,19 +10,20 @@ class Snake:
         self.snake_body = [[420, 400], [440, 400]]
 
     def controller(self, key_char):
-        if key_char == 97:
+        if key_char == 97 and self.direction != "right":
             self.direction = "left"
-        elif key_char == 100:
+        elif key_char == 100 and self.direction != "left":
             self.direction = "right"
-        elif key_char == 119:
+        elif key_char == 119 and self.direction != "down":
             self.direction = "up"
-        elif key_char == 115:
+        elif key_char == 115 and self.direction != "up":
             self.direction = "down"
 
     def head_movement(self):
         # Set old position of the head
         self.head_old = self.head[:]
 
+        # Update position of the head
         if self.direction == "left":
             self.head[0] -= 20
         elif self.direction == "right":
