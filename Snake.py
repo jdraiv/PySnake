@@ -24,13 +24,25 @@ class Snake:
         self.head_old = self.head[:]
 
         def update_direction(list_to_update, direction):
+            def border_col(l, index):
+                # Spawns snake at the opposite direction
+                if l[index] < 0:
+                    l[index] = 500
+                elif l[index] > 500:
+                    l[index] = 0
+
             positive_l = ["right", "down"]
             negative_l = ["left", "up"]
 
             if direction in positive_l:
-                list_to_update[positive_l.index(direction)] += 20
+                l_index = positive_l.index(direction)
+                list_to_update[l_index] += 20
+                border_col(list_to_update, l_index)
             elif direction in negative_l:
-                list_to_update[negative_l.index(direction)] -= 20
+                l_index = negative_l.index(direction)
+                list_to_update[l_index] -= 20
+
+                border_col(list_to_update, l_index)
 
         update_direction(self.head, self.direction)
 
