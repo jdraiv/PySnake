@@ -26,10 +26,10 @@ class Snake:
         def update_direction(list_to_update, direction):
             def border_col(l, index):
                 # Spawns snake at the opposite direction
-                if l[index] < 0:
-                    l[index] = 500
-                elif l[index] > 500:
-                    l[index] = 0
+                if l[index] <= -20:
+                    l[index] = 480
+                elif l[index] >= 500:
+                    l[index] = 20
 
             positive_l = ["right", "down"]
             negative_l = ["left", "up"]
@@ -37,6 +37,7 @@ class Snake:
             if direction in positive_l:
                 l_index = positive_l.index(direction)
                 list_to_update[l_index] += 20
+
                 border_col(list_to_update, l_index)
             elif direction in negative_l:
                 l_index = negative_l.index(direction)
@@ -53,6 +54,11 @@ class Snake:
             body[c] = [last_segment[0], last_segment[1]]
             last_segment = l
         return body
+
+    def snake_collision(self):
+        for l in self.snake_body:
+            if self.head[0] == l[0] and self.head[1] == l[1]:
+                return True
 
     def draw_snake(self):
         pygame.draw.rect(self.screen, (250, 250, 250), [self.head[0], self.head[1], 20, 20])
