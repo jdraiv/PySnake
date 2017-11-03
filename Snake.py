@@ -23,15 +23,16 @@ class Snake:
         # Set old position of the head
         self.head_old = self.head[:]
 
-        # Update position of the head
-        if self.direction == "left":
-            self.head[0] -= 20
-        elif self.direction == "right":
-            self.head[0] += 20
-        elif self.direction == "up":
-            self.head[1] -= 20
-        elif self.direction == "down":
-            self.head[1] += 20
+        def update_direction(list_to_update, direction):
+            positive_l = ["right", "down"]
+            negative_l = ["left", "up"]
+
+            if direction in positive_l:
+                list_to_update[positive_l.index(direction)] += 20
+            elif direction in negative_l:
+                list_to_update[negative_l.index(direction)] -= 20
+
+        update_direction(self.head, self.direction)
 
     def tail_movement(self, h, body):
         # Update body
