@@ -7,6 +7,7 @@ import Snake
 import Apple
 import UI
 
+
 class Game:
     def __init__(self, bg):
         self.bg = bg
@@ -14,6 +15,7 @@ class Game:
         self.snake_class = Snake.Snake(self.screen)
         self.apple_class = Apple.AppleClass(self.screen, self.snake_class.head)
         self.start = False
+        self.score = 0
 
     def game(self):
         clock = pygame.time.Clock()
@@ -29,13 +31,15 @@ class Game:
         # Collision detection
         # If snake collision
         if self.snake_class.snake_collision():
+            print("You lose! Your score was: %s" % self.score)
             sys.exit()
 
         # If the apple is eaten
         if self.apple_class.apple_collision():
+            # Add to the score
+            self.score += 1
             # Append a segment to the snake_body list
             self.snake_class.snake_body.append([])
-
 
     def game_controller(self, key_char):
         if key_char == 111:
@@ -59,9 +63,11 @@ class Game:
             # Execute game
             if self.start:
                 self.game()
+                # Draw score
+                UI.UIClass(self.screen).draw_text("Score: %s" % self.score, 20, 20)
             # Show pause screen
             else:
-                UI.UIClass(self.screen).start_text()
+                UI.UIClass(self.screen).draw_text("Press o to start or restart. Press P to pause the game.", 30, 250)
 
             # Update screen
             pygame.display.update()

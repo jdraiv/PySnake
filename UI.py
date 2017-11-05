@@ -10,6 +10,3 @@ class UIClass:
         font = pygame.font.SysFont("monospace", 13)
         text = font.render(t, 1, (0, 250, 0))
         self.screen.blit(text, (x_pos, y_pos))
-
-    def start_text(self):
-        self.draw_text("Press o to start or restart. Press P to pause the game.", 30, 250)
