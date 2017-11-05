@@ -29,7 +29,7 @@ class Snake:
                 if l[index] <= -20:
                     l[index] = 480
                 elif l[index] >= 500:
-                    l[index] = 20
+                    l[index] = 0
 
             positive_l = ["right", "down"]
             negative_l = ["left", "up"]
