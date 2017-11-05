@@ -4,10 +4,10 @@ import random
 
 
 class AppleClass:
-    def __init__(self, screen, snake_head_pos):
+    def __init__(self, screen, s_head_pos):
         self.screen = screen
         self.apple_pos = self.random_pos()
-        self.s_head_pos = snake_head_pos
+        self.s_head_pos = s_head_pos
 
     def apple_collision(self):
         if self.s_head_pos[0] == self.apple_pos[0] and self.s_head_pos[1] == self.apple_pos[1]:
