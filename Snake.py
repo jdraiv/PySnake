@@ -1,5 +1,5 @@
 import pygame
-
+import Vars
 
 class Snake:
     def __init__(self, screen):
@@ -36,12 +36,12 @@ class Snake:
 
             if direction in positive_l:
                 l_index = positive_l.index(direction)
-                list_to_update[l_index] += 20
+                list_to_update[l_index] += Vars.snake_size
 
                 border_col(list_to_update, l_index)
             elif direction in negative_l:
                 l_index = negative_l.index(direction)
-                list_to_update[l_index] -= 20
+                list_to_update[l_index] -= Vars.snake_size
 
                 border_col(list_to_update, l_index)
 
@@ -61,11 +61,11 @@ class Snake:
                 return True
 
     def draw_snake(self):
-        pygame.draw.rect(self.screen, (250, 250, 250), [self.head[0], self.head[1], 20, 20])
+        pygame.draw.rect(self.screen, Vars.white_color, [self.head[0], self.head[1], 20, 20])
         # Update snake body
         self.snake_body = self.tail_movement(self.head_old, self.snake_body)
 
         for l in self.snake_body:
-            pygame.draw.rect(self.screen, (250, 250, 250), [l[0], l[1], 20, 20])
+            pygame.draw.rect(self.screen, Vars.white_color, [l[0], l[1], 20, 20])
 
 

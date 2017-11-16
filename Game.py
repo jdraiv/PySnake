@@ -6,12 +6,13 @@ import sys
 import Snake
 import Apple
 import UI
+import Vars
 
 
 class Game:
     def __init__(self, bg):
         self.bg = bg
-        self.screen = pygame.display.set_mode([500, 500])
+        self.screen = pygame.display.set_mode([Vars.screen_size, Vars.screen_size])
         self.snake_class = Snake.Snake(self.screen)
         self.apple_class = Apple.AppleClass(self.screen, self.snake_class.head)
         self.start = False
@@ -52,7 +53,10 @@ class Game:
         play = True
 
         while play:
-            self.screen.fill([0, 0, 0])
+            # Start screen
+            pygame.display.set_caption("Snake")
+            self.screen.fill(Vars.black_color)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     print("Exit")
@@ -67,7 +71,7 @@ class Game:
                 UI.UIClass(self.screen).draw_text("Score: %s" % self.score, 20, 20)
             # Show pause screen
             else:
-                UI.UIClass(self.screen).draw_text("Press o to start or restart. Press P to pause the game.", 30, 250)
+                UI.UIClass(self.screen).draw_text("Press O to start or restart. Press P to pause the game.", 30, 250)
 
             # Update screen
             pygame.display.update()

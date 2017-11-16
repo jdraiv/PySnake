@@ -1,6 +1,7 @@
 
 import pygame
 import random
+import Vars
 
 
 class AppleClass:
@@ -20,9 +21,9 @@ class AppleClass:
     def random_pos(self):
         pos = []
         for c in range(2):
-            pos.append(20 * random.randint(0, 20))
+            pos.append(Vars.snake_size * random.randint(0, Vars.snake_size))
         return pos
 
     def draw_apple(self):
-        pygame.draw.rect(self.screen, (250, 0, 0), [self.apple_pos[0], self.apple_pos[1], 20, 20])
+        pygame.draw.rect(self.screen, Vars.red_color, [self.apple_pos[0], self.apple_pos[1], 20, 20])
 
